@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1 class="title">Etch-a-Sketch</h1>
+    <div id="options">
+        <form action="javascript:void(0);" onsubmit="createGrid()">
+            <label for="grid-size">Grid Size (1-100):</label>
+            <input id= "grid-size" type="number" name="grid-size" value="20" min="1" max="100">
+            <input type="submit" value="Set Grid Size">
+        </form>
+        <button>Draw
+            <input id="input-color" type="color" value="#ff0000">
+        </button>
+        <button id="eraser">Eraser</button>
+        <button id="clear-canvas">Clear Canvas</button>
+    </div>
+    <div class="container-border">
+        <div class="container">
+            
+        </div>
+    </div>
+</body>
+</html>
