@@ -39,22 +39,10 @@ function createGrid() {
         // clientWidth will round the decimal value so it is not used
         let num = window.getComputedStyle(allSquares[i]).width;
         allSquares[i].style.height = parseFloat(num) + "px";
-
-        allSquares[i].addEventListener('mousedown', function(e) {
-            // preventDefault disables dragging
-            console.log(e);
-            e.preventDefault();
-            allSquares[i].style.backgroundColor = randomRGB();
-        })
-
-        // allows dragging
-        allSquares[i].addEventListener('mouseover', function(e) {
-            if (e.which === 1) {
-                allSquares[i].style.backgroundColor = randomRGB();
-            }
-        })
     }
 
+    let inputColor = document.querySelector('#input-color').value;
+    changeColor(inputColor);
 }
 
 function removeExistingGrid() {
@@ -74,6 +62,78 @@ function randomRGB() {
     return rgb;
 }
 
-createGrid();
+function clearCanvas() {
+    let allSquares = document.querySelectorAll('.square');
+    
+    for (let i = 0; i < allSquares.length; i++) {
+        allSquares[i].style.backgroundColor = "";
+    }
+}
 
+// POSSIBLE FEATURE
+// Have an option where user can select recently used colors
+let previousColor = 'black';
+
+function changeColor(color) {
+    let allSquares = document.querySelectorAll('.square');
+
+    allSquares[0].removeEventListener('mousedown', addMouseDownWrapper);
+    
+    // get current input color
+    let inputColor = document.querySelector('#input-color').value;
+    color = inputColor;
+    previousColor = color;
+
+    for (let i = 0; i < allSquares.length; i++) {
+        allSquares[i].addEventListener('mousedown', addMouseDownWrapper);
+        allSquares[i].addEventListener('mouseover', addMouseOverWrapper);
+    }
+    
+    function addMouseDown(e, color) {
+        const square = e.target;
+        square.style.backgroundColor = color;
+        // disable dragging an element
+        e.preventDefault();
+    }
+
+    function addMouseOver(e, color) {
+        const square = e.target;
+        
+        // only change color if user is left clicking while dragging
+        if (e.which === 1) {
+            square.style.backgroundColor = color;
+        }
+    }
+
+    function addMouseDownWrapper(e) {
+        addMouseDown(e, color);
+    }
+
+    function addMouseOverWrapper(e) {
+        addMouseOver(e, color);
+    }
+}
+
+const drawButtons = document.querySelectorAll('.draw-button');
+
+// only one button has the 'active' class
+function activateDrawButton(button) {
+    drawButtons.forEach((btn) => {
+        btn.classList.remove('active');
+    })
+    button.classList.add('active');
+}
+
+// add listener so that when a button is clicked, it is 'active' or in use
+drawButtons.forEach((button) => {
+    button.addEventListener('click', function() {
+        activateDrawButton(this);
+    })
+})
+
+function changeColorToRandom() {
+    console.log('hi');
+}
+
+createGrid();
 // console.log(container);
