@@ -138,7 +138,7 @@ function addMouseOver(e) {
     const square = e.target;
     
     // only change color if user is left clicking while dragging
-    if (e.which === 1) {
+    if (e.buttons === 1) {
         if (rainbowMode) {
             square.style.backgroundColor = randomRGB();
         } else if (eraserMode) {
