@@ -13,16 +13,19 @@
         <form action="javascript:void(0);" onsubmit="createGrid()">
             <label for="grid-size">Grid Size (1-100):</label>
             <input id= "grid-size" type="number" name="grid-size" value="20" min="1" max="100">
-            <input type="submit" value="Set Grid Size">
+            <input id="grid-size-button" type="submit" value="Set Grid Size">
         </form>
+
+        <button id="random-button" class="input-button" onclick="changeColorToRandom()">Random</button>
+        
         <div class="draw-button-container">
-            <button class="draw-button" onclick="changeColor()">Draw
+            <button id="draw-button" onclick="changeToDraw()">Draw
                 <input id="input-color" type="color" value="#000000" onchange="changeColor()">
             </button>
-            <button class="draw-button" onclick="changeColorToRandom()">Random</button>
-            <button class="draw-button" onclick="changeColorToRainbow()">Rainbow</button>
-            <button id="eraser" class="draw-button" onclick="changeToEraser()">Eraser</button>
+            <button id="rainbow-button" onclick="changeColorToRainbow()">Rainbow</button>
+            <button id="eraser-button" onclick="changeToEraser()">Eraser</button>
         </div>
+
         <button id="clear-canvas" onclick="clearCanvas()">Clear Canvas</button>
     </div>
     <div class="container-border">
